@@ -50,10 +50,13 @@ class QrCodeLayout extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: QrImageView(
-          data: 'https://www.youtube.com/',
-          size: 200,
-        ),
+        child: Column(children: [
+          QrImageView(
+            data: 'https://www.youtube.com/',
+            size: 200,
+          ),
+          Text('これはQRコードです'),
+        ]),
       ),
     );
   }
