@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 //
@@ -35,14 +36,46 @@ class Pagedelivery extends StatelessWidget {
 
     // 画面全体
     return Scaffold(
-      appBar: appBar,
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            backButton,
-          ],
+      appBar: AppBar(
+        title: const Text(
+          'カード配布画面',
+          style: TextStyle(color: Colors.white),
         ),
+
+        leading: TextButton(
+          onPressed: () => back(context),
+          child: const Text(
+            '戻る',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 15.0,
+            ),
+          ),
+        ),
+        automaticallyImplyLeading:
+            false, //デフォルトだと左上に←ボタン（よく見る戻るボタン）が出てくる。今回は「戻る」ボタンを自作したためfalseにしてある
+        backgroundColor: const Color.fromARGB(255, 47, 159, 167),
+
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Column(children: [
+          QrImageView(
+            data: 'https://d.kuku.lu/7g2f2rfgv',
+            //値渡しのために変更する必要あり（8/27 15:58）
+            //プロタイプ用に画像を作ってリンクを張ってある状態（8/27 16:40）
+            size: 200,
+          ),
+          const Text(
+            '配布用QR',
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 15.0,
+            ),
+          ),
+        ]), //カラム、チルドレンを使って複数処理を書いている
       ),
     );
   }
