@@ -3,12 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'point_card.dart';
 
 class CardDetailsPage extends StatefulWidget {
-  // 戻るボタンを押したとき
-  back(BuildContext context) {
-    // 前の画面 へ戻る
-    context.pop();
-  }
-
   final PointCard card;
 
   CardDetailsPage({required this.card});
@@ -18,8 +12,21 @@ class CardDetailsPage extends StatefulWidget {
 }
 
 class _CardDetailsPageState extends State<CardDetailsPage> {
+  // 戻るボタンを押したとき
+  back(BuildContext context) {
+    // 前の画面 へ戻る
+    context.pop();
+  }
+
   @override
   Widget build(BuildContext context) {
+    ElevatedButton(
+      onPressed: () => back(context),
+      // MEMO: primary は古くなったので backgroundColor へ変更しました
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+      child: const Text('< 戻る'),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text('${widget.card.cardName} の詳細'),

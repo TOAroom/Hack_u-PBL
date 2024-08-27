@@ -5,11 +5,6 @@ import 'package:bordered_text/bordered_text.dart';
 class Customer_OR_Store extends StatelessWidget {
   Customer_OR_Store({super.key});
 
-  //戻るボタン押したとき
-  void back(BuildContext context) {
-    context.pop();
-  }
-
   void navigateTo(BuildContext context, String route) {
     context.push(route);
   }

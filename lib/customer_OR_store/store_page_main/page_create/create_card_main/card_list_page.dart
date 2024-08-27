@@ -4,11 +4,6 @@ import 'point_card.dart';
 import 'card_details_page.dart';
 
 class CardListPage extends StatefulWidget {
-  back(BuildContext context) {
-    // 前の画面 へ戻る
-    context.pop();
-  }
-
   @override
   _CardListPageState createState() => _CardListPageState();
 }
@@ -18,15 +13,27 @@ class _CardListPageState extends State<CardListPage> {
 
   @override
   Widget build(BuildContext context) {
+    back(BuildContext context) {
+      // 前の画面 へ戻る
+      context.pop();
+    }
+
+    ElevatedButton(
+      onPressed: () => back(context),
+      // MEMO: primary は古くなったので backgroundColor へ変更しました
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+      child: const Text('< 戻る'),
+    );
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('電子ポイントカード'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: _createNewCard,
-          ),
-        ],
+        backgroundColor: const Color.fromARGB(255, 94, 199, 73),
+        title: const Text(
+          'ポケっとかーど',
+          style: TextStyle(
+              color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
       ),
       body: _cards.isEmpty
           ? Center(child: Text('ポイントカードがありません。新しく作成してください。'))
