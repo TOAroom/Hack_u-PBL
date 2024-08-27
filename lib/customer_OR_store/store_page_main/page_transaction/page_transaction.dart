@@ -5,6 +5,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 //
 // 画面 取引
 //
+//
 
 class Pagetransaction extends StatelessWidget {
   const Pagetransaction({super.key});
