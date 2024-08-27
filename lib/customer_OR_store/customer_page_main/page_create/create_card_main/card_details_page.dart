@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'point_card.dart';
 
 class CardDetailsPage extends StatefulWidget {
+  // 戻るボタンを押したとき
+  back(BuildContext context) {
+    // 前の画面 へ戻る
+    context.pop();
+  }
+
   final PointCard card;
 
   CardDetailsPage({required this.card});
