@@ -1,6 +1,6 @@
 # hack_u_pbl
 
-A new Flutter project.
+vscodeとgithubの連携がしてあれば、これを読み込むだけで動くようにした。　だから可能であればファイル配置意識して、これにくっつけるようにやってもらえると助かる!
 
 ## Getting Started
 
