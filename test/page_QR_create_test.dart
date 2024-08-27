@@ -1,40 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:go_router/go_router.dart';
 
-//
-// 画面 受け渡し
-//
-class Pagedelivery extends StatelessWidget {
-  const Pagedelivery({super.key});
+void main() {
+  runApp(MyApp());
+}
 
-  // 戻るボタンを押したとき
-  back(BuildContext context) {
-    // 前の画面 へ戻る
-    context.pop();
-  }
+void back(BuildContext context) {
+  context.pop();
+}
 
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // 画面の上に表示するバー
-    final appBar = AppBar(
-      backgroundColor: const Color.fromARGB(255, 47, 159, 167),
-      title: const Text(
-        'ポイントカード受け渡し',
-        style: TextStyle(color: Colors.white),
+    return MaterialApp(
+      title: 'カード配布画面',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      centerTitle: true,
+      home: QrCodeLayout(),
     );
+  }
+}
 
-    // 戻るボタン
-    final backButton = ElevatedButton(
-      onPressed: () => back(context),
-      // MEMO: primary は古くなったので backgroundColor へ変更しました
-      style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-      child: const Text('< 戻る'),
-    );
-
-    // 画面全体
+class QrCodeLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
