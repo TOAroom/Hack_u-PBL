@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  qr_flutter: ^4.1.0
   bordered_text:
   go_router:
   flutter:
