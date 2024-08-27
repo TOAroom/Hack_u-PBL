@@ -55,7 +55,7 @@ class Pagedelivery extends StatelessWidget {
         ),
         automaticallyImplyLeading:
             false, //デフォルトだと左上に←ボタン（よく見る戻るボタン）が出てくる。今回は「戻る」ボタンを自作したためfalseにしてある
-        backgroundColor: const Color.fromARGB(255, 47, 159, 167),
+        backgroundColor: const Color.fromARGB(255, 47, 167, 63),
 
         centerTitle: true,
       ),
