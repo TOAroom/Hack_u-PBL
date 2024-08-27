@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "ryuunosuke_point" "\0"
+            VALUE "FileDescription", "hack_u_pbl" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "ryuunosuke_point" "\0"
+            VALUE "InternalName", "hack_u_pbl" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "ryuunosuke_point.exe" "\0"
-            VALUE "ProductName", "ryuunosuke_point" "\0"
+            VALUE "OriginalFilename", "hack_u_pbl.exe" "\0"
+            VALUE "ProductName", "hack_u_pbl" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
