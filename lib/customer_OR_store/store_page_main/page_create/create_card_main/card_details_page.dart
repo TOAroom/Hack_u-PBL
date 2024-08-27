@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'point_card.dart';
 
 class CardDetailsPage extends StatefulWidget {
@@ -12,52 +11,77 @@ class CardDetailsPage extends StatefulWidget {
 }
 
 class _CardDetailsPageState extends State<CardDetailsPage> {
-  // 戻るボタンを押したとき
-  back(BuildContext context) {
-    // 前の画面 へ戻る
-    context.pop();
+  int _currentPoints = 0;
+  bool _isFront = true;
+
+  void _toggleCard() {
+    setState(() {
+      _isFront = !_isFront;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    ElevatedButton(
-      onPressed: () => back(context),
-      // MEMO: primary は古くなったので backgroundColor へ変更しました
-      style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-      child: const Text('< 戻る'),
-    );
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.card.cardName} の詳細'),
+        title: Text(widget.card.cardName),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'ポイント: ${widget.card.points}',
-              style: TextStyle(fontSize: 24),
+      body: Center(
+        child: GestureDetector(
+          onTap: _toggleCard, // カードをタップで表裏を切り替え
+          child: Container(
+            height: 200,
+            width: 300,
+            decoration: BoxDecoration(
+              color: widget.card.color,
+              image: widget.card.backgroundImagePath != null && _isFront
+                  ? DecorationImage(
+                      image: AssetImage(widget.card.backgroundImagePath!),
+                      fit: BoxFit.cover,
+                    )
+                  : null,
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => _updatePoints(1),
-              child: Text('ポイントを加算'),
-            ),
-            ElevatedButton(
-              onPressed: () => _updatePoints(-1),
-              child: Text('ポイントを減算'),
-            ),
-          ],
+            child: _isFront
+                ? Stack(
+                    children: List.generate(
+                      _currentPoints,
+                      (index) => Positioned(
+                        left: (index % 5) * 50.0,
+                        top: (index ~/ 5) * 50.0,
+                        child: Icon(
+                          widget.card.stampIcon,
+                          color: widget.card.stampColor,
+                          size: 40,
+                        ),
+                      ),
+                    ),
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('カード名: ${widget.card.cardName}',
+                          style: TextStyle(fontSize: 20)),
+                      Text('備考: ${widget.card.note}',
+                          style: TextStyle(fontSize: 16)),
+                      Text('最大ポイント数: ${widget.card.maxPoints}',
+                          style: TextStyle(fontSize: 16)),
+                    ],
+                  ),
+          ),
         ),
       ),
+      floatingActionButton: _isFront
+          ? FloatingActionButton(
+              onPressed: () {
+                if (_currentPoints < widget.card.maxPoints) {
+                  setState(() {
+                    _currentPoints++;
+                  });
+                }
+              },
+              child: Icon(Icons.add),
+            )
+          : null,
     );
-  }
-
-  void _updatePoints(int delta) {
-    setState(() {
-      widget.card.points += delta;
-    });
   }
 }

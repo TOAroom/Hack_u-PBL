@@ -17,6 +17,10 @@ dependencies:
   flutter_riverpod: #追加部分
   flutter:
     sdk: flutter
+  image_picker: ^1.0.0 #追加
+
+
+
  
   cupertino_icons: ^1.0.8
   flutter_nearby_connections: ^1.1.2
