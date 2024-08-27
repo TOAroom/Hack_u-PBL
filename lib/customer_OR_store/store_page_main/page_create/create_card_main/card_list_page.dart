@@ -11,37 +11,6 @@ class CardListPage extends StatefulWidget {
 class _CardListPageState extends State<CardListPage> {
   List<PointCard> _cards = [];
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('ポイントカード一覧'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: _createNewCard,
-          ),
-        ],
-      ),
-      body: ListView.builder(
-        itemCount: _cards.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(_cards[index].cardName),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CardDetailsPage(card: _cards[index]),
-                ),
-              );
-            },
-          );
-        },
-      ),
-    );
-  }
-
   void _createNewCard() {
     String cardName = '';
     String cardNote = '';
@@ -55,115 +24,113 @@ class _CardListPageState extends State<CardListPage> {
     showDialog(
       context: context,
       builder: (context) {
-        return StatefulBuilder(builder: (context, setState) {
-          return AlertDialog(
-            title: Text('新しいポイントカードを作成'),
-            content: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextField(
-                    onChanged: (value) {
-                      cardName = value;
-                    },
-                    decoration: InputDecoration(
-                      hintText: 'カード名を入力してください',
+        return AlertDialog(
+          title: Text('新しいポイントカードを作成'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  onChanged: (value) {
+                    cardName = value;
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'カード名を入力してください',
+                  ),
+                ),
+                TextField(
+                  onChanged: (value) {
+                    cardNote = value;
+                  },
+                  decoration: InputDecoration(
+                    hintText: '備考情報を入力してください',
+                  ),
+                ),
+                Row(
+                  children: [
+                    Text('アイコンを追加:'),
+                    SizedBox(width: 10),
+                    IconButton(
+                      icon: Icon(Icons.add),
+                      onPressed: () async {
+                        _addIcon((icon) {
+                          setState(() {
+                            selectedIcons.add(icon);
+                          });
+                        });
+                      },
                     ),
-                  ),
-                  TextField(
-                    onChanged: (value) {
-                      cardNote = value;
-                    },
-                    decoration: InputDecoration(
-                      hintText: '備考情報を入力してください',
+                  ],
+                ),
+                Row(
+                  children: selectedIcons.map((icon) => Icon(icon)).toList(),
+                ),
+                Row(
+                  children: [
+                    Text('テンプレート:'),
+                    SizedBox(width: 10),
+                    TextButton(
+                      onPressed: () {
+                        _selectCardTemplate((color, icon) {
+                          setState(() {
+                            selectedColor = color;
+                            selectedIcons = [icon];
+                          });
+                        });
+                      },
+                      child: Text('選択'),
                     ),
-                  ),
-                  Row(
-                    children: [
-                      Text('アイコンを追加:'),
-                      SizedBox(width: 10),
-                      IconButton(
-                        icon: Icon(Icons.add),
-                        onPressed: () async {
-                          _addIcon((icon) {
-                            setState(() {
-                              selectedIcons.add(icon);
-                            });
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text('スタンプ:'),
+                    SizedBox(width: 10),
+                    TextButton(
+                      onPressed: () {
+                        _customizeStamp((icon, color) {
+                          setState(() {
+                            stampIcon = icon;
+                            stampColor = color;
                           });
-                        },
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: selectedIcons.map((icon) => Icon(icon)).toList(),
-                  ),
-                  Row(
-                    children: [
-                      Text('テンプレート:'),
-                      SizedBox(width: 10),
-                      TextButton(
-                        onPressed: () {
-                          _selectCardTemplate((color, icon) {
-                            setState(() {
-                              selectedColor = color;
-                              selectedIcons = [icon];
-                            });
-                          });
-                        },
-                        child: Text('選択'),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text('スタンプ:'),
-                      SizedBox(width: 10),
-                      TextButton(
-                        onPressed: () {
-                          _customizeStamp((icon, color) {
-                            setState(() {
-                              stampIcon = icon;
-                              stampColor = color;
-                            });
-                          });
-                        },
-                        child: Text('カスタマイズ'),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                        });
+                      },
+                      child: Text('カスタマイズ'),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            actions: [
-              TextButton(
-                onPressed: () {
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('キャンセル'),
+            ),
+            TextButton(
+              child: Text('作成'),
+              onPressed: () {
+                if (cardName.isNotEmpty) {
+                  setState(() {
+                    _cards.add(PointCard(
+                      cardName: cardName,
+                      note: cardNote,
+                      color: selectedColor,
+                      icons: selectedIcons,
+                      maxPoints: maxPoints,
+                      backgroundImagePath: backgroundImagePath,
+                      stampIcon: stampIcon,
+                      stampColor: stampColor,
+                    ));
+                  });
                   Navigator.of(context).pop();
-                },
-                child: Text('キャンセル'),
-              ),
-              TextButton(
-                onPressed: () {
-                  if (cardName.isNotEmpty) {
-                    setState(() {
-                      _cards.add(PointCard(
-                        cardName: cardName,
-                        note: cardNote,
-                        color: selectedColor,
-                        icons: selectedIcons,
-                        maxPoints: maxPoints,
-                        backgroundImagePath: backgroundImagePath,
-                        stampIcon: stampIcon,
-                        stampColor: stampColor,
-                      ));
-                    });
-                    Navigator.of(context).pop();
-                  }
-                },
-                child: Text('作成'),
-              ),
-            ],
-          );
-        });
+                }
+              },
+            ),
+          ],
+        );
       },
     );
   }
@@ -319,6 +286,37 @@ class _CardListPageState extends State<CardListPage> {
           ],
         );
       },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('ポイントカード一覧'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: _createNewCard,
+          ),
+        ],
+      ),
+      body: ListView.builder(
+        itemCount: _cards.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(_cards[index].cardName),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CardDetailsPage(card: _cards[index]),
+                ),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
