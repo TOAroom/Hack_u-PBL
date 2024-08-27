@@ -54,7 +54,7 @@ class QrCodeLayout extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: Column(children: [
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           QrImageView(
             data: 'https://d.kuku.lu/7g2f2rfgv',
             //値渡しのために変更する必要あり（8/27 15:58）
