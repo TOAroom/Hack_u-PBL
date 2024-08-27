@@ -1,123 +1,74 @@
 import 'package:flutter/material.dart';
-import 'card_list_page.dart';
+import 'package:go_router/go_router.dart';
 
-void main() {
-  runApp(MyApp());
+import 'customer_OR_store/customer_page_main/page_delivery/page_delivery.dart';
+import 'customer_OR_store/customer_page_main/customer_page_main.dart';
+import 'customer_OR_store/customer_page_main/page_create/page_create.dart';
+import 'customer_OR_store/customer_page_main/page_list/page_list.dart';
+import 'customer_OR_store/customer_page_main/page_transaction/page_transaction.dart';
+import 'customer_OR_store/customer_OR_store.dart';
+import 'customer_OR_store/store_page_main/store_Page_main.dart';
+import 'customer_OR_store/customer_page_main/page_transaction/userlist_page.dart';
+import 'customer_OR_store/customer_page_main/page_transaction/pointgive_completion_page.dart';
+
+main() {
+  final app = App();
+  runApp(app);
 }
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+class App extends StatelessWidget {
+  App({super.key});
+
+  final router = GoRouter(
+    // パス (アプリが起動したとき)
+    initialLocation: '/choice_cs',
+    // パスと画面の組み合わせ
+    routes: [
+      GoRoute(
+        path: '/choice_cs',
+        builder: (context, state) => Customer_OR_Store(),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+      GoRoute(
+        path: '/s_main',
+        builder: (context, state) => const Store_Pagemain(),
+      ),
+      GoRoute(
+        path: '/main',
+        builder: (context, state) => const Pagemain(),
+      ),
+      GoRoute(
+        path: '/create',
+        builder: (context, state) => const Pagecreate(),
+      ),
+      GoRoute(
+        path: '/list',
+        builder: (context, state) => const Pagelist(),
+      ),
+      GoRoute(
+        path: '/delivery',
+        builder: (context, state) => const Pagedelivery(),
+      ),
+      GoRoute(
+        path: '/transaction',
+        builder: (context, state) => const Pagetransaction(),
+      ),
+      GoRoute(
+        path: '/givepoint',
+        builder: (context, state) => const Givepoint(),
+      ),
+      GoRoute(
+        path: '/givecompletion',
+        builder: (context, state) => const PointgiveCompletion(),
+      ),
+    ],
+  );
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    return MaterialApp.router(
+      routeInformationProvider: router.routeInformationProvider,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
     );
   }
 }
