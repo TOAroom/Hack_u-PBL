@@ -50,7 +50,7 @@ class Customer_OR_Store extends StatelessWidget {
               //ボタン内の文字の設定
               label: BorderedText(
                 strokeWidth: 2.0,
-                strokeColor: Colors.black,
+                strokeColor: Colors.white,
                 child: const Text(
                   'CUSTOMER',
                   style: TextStyle(
@@ -75,7 +75,7 @@ class Customer_OR_Store extends StatelessWidget {
               //ボタン内の文字の設定
               label: BorderedText(
                 strokeWidth: 2.0,
-                strokeColor: Colors.black,
+                strokeColor: Colors.white,
                 child: const Text(
                   'STORE',
                   style: TextStyle(
