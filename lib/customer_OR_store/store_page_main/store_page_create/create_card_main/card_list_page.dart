@@ -152,7 +152,7 @@ class _CardListPageState extends State<CardListPage> {
           title: Text('アイコンを追加'),
           content: DropdownButton<IconData>(
             value: selectedIcon,
-            items: [
+            items: const [
               DropdownMenuItem(
                 value: Icons.card_giftcard,
                 child: Icon(Icons.card_giftcard),
@@ -229,13 +229,13 @@ class _CardListPageState extends State<CardListPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('スタンプをカスタマイズ'),
+          title: const Text('スタンプをカスタマイズ'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               DropdownButton<IconData>(
                 value: selectedIcon,
-                items: [
+                items: const [
                   DropdownMenuItem(
                     value: Icons.circle,
                     child: Icon(Icons.circle),
@@ -255,7 +255,7 @@ class _CardListPageState extends State<CardListPage> {
               ),
               DropdownButton<Color>(
                 value: selectedColor,
-                items: [
+                items: const [
                   DropdownMenuItem(
                     value: Colors.red,
                     child: Text('Red'),
@@ -281,7 +281,7 @@ class _CardListPageState extends State<CardListPage> {
                 onStampCustomized(selectedIcon, selectedColor);
                 Navigator.of(context).pop();
               },
-              child: Text('設定'),
+              child: const Text('設定'),
             ),
           ],
         );
@@ -297,16 +297,19 @@ class _CardListPageState extends State<CardListPage> {
 
   @override
   Widget build(BuildContext context) {
+    //戻るボタンを作るための変数の設定
     final backButton = ElevatedButton(
       onPressed: () => back(context),
       // MEMO: primary は古くなったので backgroundColor へ変更しました
       style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
       child: const Text('< 戻る'),
     );
+
     return Scaffold(
+      //Appbarの設定
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 94, 199, 73),
-        title: Text('ポイントカード一覧'),
+        title: const Text('作成したポイントカード', style: TextStyle(color: Colors.white)),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () => back(context),
@@ -318,7 +321,10 @@ class _CardListPageState extends State<CardListPage> {
             onPressed: _createNewCard,
           ),
         ],
+        centerTitle: true,
       ),
+
+      //カードをリスト表示
       body: ListView.builder(
         itemCount: _cards.length,
         itemBuilder: (context, index) {

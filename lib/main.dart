@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'customer_OR_store/store_page_main/page_delivery/page_delivery.dart';
+import 'customer_OR_store/store_page_main/store_page_delivery/page_delivery.dart';
 import 'customer_OR_store/customer_page_main/customer_page_main.dart';
-import 'customer_OR_store/store_page_main/page_create/page_create.dart';
-import 'customer_OR_store/store_page_main/page_list/page_list.dart';
-import 'customer_OR_store/store_page_main/page_transaction/page_transaction.dart';
+import 'customer_OR_store/store_page_main/store_page_create/page_create.dart';
+import 'customer_OR_store/customer_page_main/customer_page_list/customer_page_list.dart';
+import 'customer_OR_store/store_page_main/store_page_transaction/page_transaction.dart';
 import 'customer_OR_store/customer_OR_store.dart';
 import 'customer_OR_store/store_page_main/store_Page_main.dart';
-import 'customer_OR_store/store_page_main/page_transaction/userlist_page.dart';
-import 'customer_OR_store/store_page_main/page_transaction/pointgive_completion_page.dart';
+import 'customer_OR_store/store_page_main/store_page_transaction/userlist_page.dart';
+import 'customer_OR_store/store_page_main/store_page_transaction/pointgive_completion_page.dart';
 
 main() {
   final app = App();
