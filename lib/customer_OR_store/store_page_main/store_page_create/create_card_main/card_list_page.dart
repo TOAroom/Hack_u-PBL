@@ -297,14 +297,6 @@ class _CardListPageState extends State<CardListPage> {
 
   @override
   Widget build(BuildContext context) {
-    //戻るボタンを作るための変数の設定
-    final backButton = ElevatedButton(
-      onPressed: () => back(context),
-      // MEMO: primary は古くなったので backgroundColor へ変更しました
-      style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-      child: const Text('< 戻る'),
-    );
-
     return Scaffold(
       //Appbarの設定
       appBar: AppBar(

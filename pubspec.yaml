@@ -11,6 +11,7 @@ environment:
 
 
 dependencies:
+  shared_preferences:
   percent_indicator:
   permission_handler: ^10.2.0 #追加部分 
   go_router: #追加部分

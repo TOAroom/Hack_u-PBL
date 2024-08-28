@@ -11,7 +11,7 @@ class Pagecreate extends StatelessWidget {
   // 戻るボタンを押したとき
   back(BuildContext context) {
     // 前の画面 へ戻る
-    context.pop();
+    context.push('/s_main');
   }
 
   @override
@@ -26,14 +26,9 @@ class Pagecreate extends StatelessWidget {
       centerTitle: true,
     );
 
-    // 進むボタン
-
-    // 戻るボタン
-    final backButton = ElevatedButton(
-      onPressed: () => back(context),
-      // MEMO: primary は古くなったので backgroundColor へ変更しました
-      style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-      child: const Text('< 戻る'),
+    ButtonStyle style = ElevatedButton.styleFrom(
+      elevation: 5,
+      padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 50),
     );
 
     // 画面全体
@@ -45,11 +40,17 @@ class Pagecreate extends StatelessWidget {
           children: [
             //backButton,
             ElevatedButton(
-              child: Text('ポイントカードを作成する'),
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CreateCardMain()));
               },
+              style: style,
+              child: const Text(
+                'ポイントカードを作成する',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
             ),
           ],
         ),

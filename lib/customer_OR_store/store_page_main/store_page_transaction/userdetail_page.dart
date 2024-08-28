@@ -16,19 +16,12 @@ class Userdetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
-      leading: TextButton(
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back),
         onPressed: () => back(context),
-        child: const Text(
-          '戻る',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 15.0,
-          ),
-        ),
       ),
       automaticallyImplyLeading: false,
-      backgroundColor: const Color.fromARGB(255, 47, 159, 167),
+      backgroundColor: const Color.fromARGB(255, 94, 199, 73),
       title: const Text(
         'ポイント付与',
         style: TextStyle(color: Colors.white),

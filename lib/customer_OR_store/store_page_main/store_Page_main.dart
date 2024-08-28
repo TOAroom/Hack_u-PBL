@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../customer_page_main/customer_page_main.dart';
 
 class Store_Pagemain extends StatelessWidget {
   const Store_Pagemain({super.key});
@@ -10,16 +11,33 @@ class Store_Pagemain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 94, 199, 73),
-        title: const Text(
-          'ポケっとかーど',
-          style: TextStyle(
-              color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+    // 画面の上に表示するバー
+    final appBar = AppBar(
+      actions: [
+        TextButton.icon(
+          icon: const Icon(
+            Icons.home,
+            color: Colors.white,
+            size: 40,
+          ),
+          label: Text(''),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => c_Pagemain()));
+          },
         ),
-        centerTitle: true,
+      ],
+      backgroundColor: const Color.fromARGB(255, 94, 199, 73),
+      title: const Text(
+        'ポケっとかーど',
+        style: TextStyle(
+            color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
       ),
+      centerTitle: true,
+    );
+
+    return Scaffold(
+      appBar: appBar,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

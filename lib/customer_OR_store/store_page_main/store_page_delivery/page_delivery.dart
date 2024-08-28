@@ -11,7 +11,7 @@ class Pagedelivery extends StatelessWidget {
   // 戻るボタンを押したとき
   back(BuildContext context) {
     // 前の画面 へ戻る
-    context.pop();
+    context.push('/s_main');
   }
 
   @override
@@ -43,20 +43,14 @@ class Pagedelivery extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
 
-        leading: TextButton(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
           onPressed: () => back(context),
-          child: const Text(
-            '戻る',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 15.0,
-            ),
-          ),
         ),
+
         automaticallyImplyLeading:
             false, //デフォルトだと左上に←ボタン（よく見る戻るボタン）が出てくる。今回は「戻る」ボタンを自作したためfalseにしてある
-        backgroundColor: const Color.fromARGB(255, 47, 167, 63),
+        backgroundColor: const Color.fromARGB(255, 94, 199, 73),
 
         centerTitle: true,
       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../store_page_main/store_Page_main.dart';
+
 class c_Pagemain extends StatelessWidget {
   const c_Pagemain({super.key});
 
@@ -12,6 +14,20 @@ class c_Pagemain extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          TextButton.icon(
+            icon: const Icon(
+              Icons.face,
+              color: Colors.white,
+              size: 40,
+            ),
+            label: Text(''),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Store_Pagemain()));
+            },
+          ),
+        ],
         backgroundColor: const Color.fromARGB(255, 94, 199, 73),
         title: const Text(
           'ポケっとかーど',
