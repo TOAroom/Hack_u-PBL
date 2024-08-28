@@ -35,27 +35,10 @@ class Store_Pagemain extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                 ),
                 textStyle:
-                const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               child: const Text(
                 'ポイントカード作成',
-                style: TextStyle(color: Color.fromARGB(255, 48, 48, 48)),
-              ),
-            ),
-            const SizedBox(height: 35.0),
-            ElevatedButton(
-              onPressed: () => navigateTo(context, '/list'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                minimumSize: Size(double.infinity, 60),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                textStyle:
-                const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              child: const Text(
-                'ポイントカード一覧',
                 style: TextStyle(color: Color.fromARGB(255, 48, 48, 48)),
               ),
             ),
@@ -69,7 +52,7 @@ class Store_Pagemain extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                 ),
                 textStyle:
-                const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               child: const Text(
                 'ポイントカード受け渡し',
@@ -86,7 +69,7 @@ class Store_Pagemain extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                 ),
                 textStyle:
-                const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               child: const Text(
                 'ポイント取引',
