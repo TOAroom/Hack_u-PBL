@@ -289,11 +289,27 @@ class _CardListPageState extends State<CardListPage> {
     );
   }
 
+  // 戻るボタンを押したとき
+  back(BuildContext context) {
+    // 前の画面 へ戻る
+    context.pop();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final backButton = ElevatedButton(
+      onPressed: () => back(context),
+      // MEMO: primary は古くなったので backgroundColor へ変更しました
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+      child: const Text('< 戻る'),
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text('ポイントカード一覧'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => back(context),
+        ),
         actions: [
           IconButton(
             iconSize: 50,
