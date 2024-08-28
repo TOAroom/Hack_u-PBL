@@ -17,6 +17,7 @@ class Pagedelivery extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 画面の上に表示するバー
+    String qrText = 'ポイントカード';
     final appBar = AppBar(
       backgroundColor: const Color.fromARGB(255, 47, 159, 167),
       title: const Text(
@@ -62,7 +63,7 @@ class Pagedelivery extends StatelessWidget {
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           QrImageView(
-            data: 'https://d.kuku.lu/7g2f2rfgv',
+            data: qrText,
             //値渡しのために変更する必要あり（8/27 15:58）
             //画像をbase64でエンコード、文字列としてQRコードを作成 -> 読み込みアプリ側でデコードして画像表示（8/27 23:28）
             //画像はストレージサーバに保存しておき、ストレージのURLを書いたQRコードを作成 -> 読み込みアプリでダウンロード（8/27 23:28）
