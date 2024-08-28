@@ -17,7 +17,7 @@ class Customer_OR_Store extends StatelessWidget {
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(0.0), // 任意の角丸さを指定
     ),
-    side: const BorderSide(color: Color.fromARGB(255, 3, 10, 15)),
+    side: const BorderSide(color: Colors.white),
   );
 
   @override
@@ -55,7 +55,7 @@ class Customer_OR_Store extends StatelessWidget {
                   'CUSTOMER',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 25,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -80,7 +80,7 @@ class Customer_OR_Store extends StatelessWidget {
                   'STORE',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 25,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
