@@ -296,6 +296,7 @@ class _CardListPageState extends State<CardListPage> {
         title: Text('ポイントカード一覧'),
         actions: [
           IconButton(
+            iconSize: 50,
             icon: Icon(Icons.add),
             onPressed: _createNewCard,
           ),
