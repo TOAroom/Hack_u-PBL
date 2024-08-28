@@ -55,16 +55,18 @@ class Pagedelivery extends StatelessWidget {
         ),
         automaticallyImplyLeading:
             false, //デフォルトだと左上に←ボタン（よく見る戻るボタン）が出てくる。今回は「戻る」ボタンを自作したためfalseにしてある
-        backgroundColor: const Color.fromARGB(255, 47, 159, 167),
+        backgroundColor: const Color.fromARGB(255, 47, 167, 63),
 
         centerTitle: true,
       ),
       body: Center(
-        child: Column(children: [
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           QrImageView(
             data: 'https://d.kuku.lu/7g2f2rfgv',
             //値渡しのために変更する必要あり（8/27 15:58）
-            //プロタイプ用に画像を作ってリンクを張ってある状態（8/27 16:40）
+            //画像をbase64でエンコード、文字列としてQRコードを作成 -> 読み込みアプリ側でデコードして画像表示（8/27 23:28）
+            //画像はストレージサーバに保存しておき、ストレージのURLを書いたQRコードを作成 -> 読み込みアプリでダウンロード（8/27 23:28）
+
             size: 200,
           ),
           const Text(
