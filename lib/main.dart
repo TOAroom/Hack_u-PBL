@@ -33,8 +33,8 @@ class App extends StatelessWidget {
         builder: (context, state) => const Store_Pagemain(),
       ),
       GoRoute(
-        path: '/main',
-        builder: (context, state) => const Pagemain(),
+        path: '/main', //変更面倒でやってないけど、このmainはcustomerのmainの方を指してる
+        builder: (context, state) => const c_Pagemain(),
       ),
       GoRoute(
         path: '/create',

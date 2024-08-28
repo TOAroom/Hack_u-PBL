@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class Pagemain extends StatelessWidget {
-  const Pagemain({super.key});
+class c_Pagemain extends StatelessWidget {
+  const c_Pagemain({super.key});
 
   void navigateTo(BuildContext context, String route) {
     context.push(route);

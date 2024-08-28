@@ -7,7 +7,7 @@ class PointgiveCompletion extends StatelessWidget {
   // 戻るボタンを押したとき
   back(BuildContext context) {
     // 前の画面 へ戻る
-    context.push('/main');
+    context.push('/s_main');
   }
 
   @override
