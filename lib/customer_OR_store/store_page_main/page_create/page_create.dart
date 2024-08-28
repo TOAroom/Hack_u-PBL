@@ -43,7 +43,7 @@ class Pagecreate extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            backButton,
+            //backButton,
             ElevatedButton(
               child: Text('ポイントカードを作成する'),
               onPressed: () {
