@@ -18,7 +18,7 @@ class Pagecreate extends StatelessWidget {
   Widget build(BuildContext context) {
     // 画面の上に表示するバー
     final appBar = AppBar(
-      backgroundColor: const Color.fromARGB(255, 47, 159, 167),
+      backgroundColor: const Color.fromARGB(255, 94, 199, 73),
       title: const Text(
         'ポイントカード作成',
         style: TextStyle(color: Colors.white),
