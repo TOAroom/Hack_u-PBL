@@ -11,6 +11,22 @@ class CreateCardMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final backButton = ElevatedButton(
+      onPressed: () => back(context),
+      // MEMO: primary は古くなったので backgroundColor へ変更しました
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+      child: const Text('< 戻る'),
+    );
+
+    final appBar = AppBar(
+      backgroundColor: const Color.fromARGB(255, 47, 159, 167),
+      title: const Text(
+        'ポイントカード作成',
+        style: TextStyle(color: Colors.white),
+      ),
+      centerTitle: true,
+    );
+
     return MaterialApp(
       title: 'ポイントカードアプリ',
       theme: ThemeData(
