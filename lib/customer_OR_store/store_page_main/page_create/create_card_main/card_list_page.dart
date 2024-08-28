@@ -305,6 +305,7 @@ class _CardListPageState extends State<CardListPage> {
     );
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 94, 199, 73),
         title: Text('ポイントカード一覧'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
