@@ -114,7 +114,7 @@ class _Pagetransaction2State extends ConsumerState<Pagetransaction2> {
         ),
       ),*/ //通信中（疑似的）に戻るボタンを押すとエラーが発生するためコメント化
       automaticallyImplyLeading: false,
-      backgroundColor: const Color.fromARGB(255, 47, 159, 167),
+      backgroundColor: const Color.fromARGB(255, 94, 199, 73),
       title: const Text(
         'ポイント付与',
         style: TextStyle(color: Colors.white),
