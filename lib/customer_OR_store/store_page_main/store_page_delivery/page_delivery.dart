@@ -59,7 +59,7 @@ class Pagedelivery extends StatelessWidget {
                   children: [
                     QrImageView(
                       data: snapshot.data!,
-                      size: 200,
+                      size: 300,
                     ),
                     Text('これはQRコードです'),
                   ],
@@ -71,7 +71,7 @@ class Pagedelivery extends StatelessWidget {
   }
 
   Future<String> _loadImageAsBase64() async {
-    final ByteData bytes = await rootBundle.load("images/");
+    final ByteData bytes = await rootBundle.load("images/white.png");
     final Uint8List list = bytes.buffer.asUint8List();
     return base64Encode(list);
   }
