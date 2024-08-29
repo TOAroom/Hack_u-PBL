@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vscode_test/customer_OR_store/store_page_main/store_page_create/create_card_main/card_list_page.dart';
 import 'point_card.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'card_list_page.dart';
 
 class CardDetailsPage extends StatefulWidget {
   final PointCard card;
@@ -22,11 +24,6 @@ class _CardDetailsPageState extends State<CardDetailsPage> {
     });
   }
 
-  back(BuildContext context) {
-    // 前の画面 へ戻る
-    context.pop();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,10 +31,6 @@ class _CardDetailsPageState extends State<CardDetailsPage> {
         backgroundColor: const Color.fromARGB(255, 94, 199, 73),
         title: Text('カード名:  ' + widget.card.cardName,
             style: TextStyle(color: Colors.white)),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => back(context),
-        ),
         centerTitle: true,
       ),
       body: Center(

@@ -34,6 +34,10 @@ class Store_Pagemain extends StatelessWidget {
             color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
       ),
       centerTitle: true,
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+        onPressed: () => navigateTo(context, '/choice_cs'),
+      ),
     );
 
     return Scaffold(

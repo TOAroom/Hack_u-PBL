@@ -172,34 +172,55 @@ class _CardListPageState extends State<CardListPage> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('キャンセル'),
+          return AlertDialog(
+            title: const Text('作成するポイントカードのプレビュー'),
+            content: SingleChildScrollView(
+              child: Column(children: [
+                Container(
+                  padding: EdgeInsets.only(bottom: 70, right: 110),
+                  height: 100,
+                  width: 150,
+                  decoration: BoxDecoration(
+                    color: selectedColor,
+                    border: Border.all(color: Colors.black, width: 0.1),
+                  ),
+                  child: Icon(stampIcon, color: stampColor),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('キャンセル'),
+                    ),
+                    TextButton(
+                      child: Text('作成'),
+                      onPressed: () {
+                        if (cardName.isNotEmpty) {
+                          setState(() {
+                            _cards.add(PointCard(
+                              cardName: cardName,
+                              note: cardNote,
+                              color: selectedColor,
+                              icons: selectedIcons,
+                              maxPoints: maxPoints,
+                              backgroundImagePath: backgroundImagePath,
+                              stampIcon: stampIcon,
+                              stampColor: stampColor,
+                            ));
+                          });
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pop();
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ]),
             ),
-            TextButton(
-              child: Text('作成'),
-              onPressed: () {
-                if (cardName.isNotEmpty) {
-                  setState(() {
-                    _cards.add(PointCard(
-                      cardName: cardName,
-                      note: cardNote,
-                      color: selectedColor,
-                      icons: selectedIcons,
-                      maxPoints: maxPoints,
-                      backgroundImagePath: backgroundImagePath,
-                      stampIcon: stampIcon,
-                      stampColor: stampColor,
-                    ));
-                  });
-                  Navigator.of(context).pop();
-                }
-              },
-            ),
-          ]);
+          );
         });
   }
 
