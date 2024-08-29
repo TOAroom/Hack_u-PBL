@@ -25,146 +25,142 @@ class _CardListPageState extends State<CardListPage> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return StatefulBuilder(
-          builder: (BuildContext, StateSetter setState) {
-            IconData ischecked = selectedIcons;
+        IconData ischecked = selectedIcons;
 
-            return AlertDialog(
-              title: Text('新しいポイントカードを作成'),
-              content: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+        return AlertDialog(
+          title: Text('新しいポイントカードを作成'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  onChanged: (value) {
+                    cardName = value;
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'カード名を入力してください',
+                  ),
+                ),
+                TextField(
+                  onChanged: (value) {
+                    cardNote = value;
+                  },
+                  decoration: InputDecoration(
+                    hintText: '備考情報を入力してください',
+                  ),
+                ),
+                Row(
                   children: [
-                    TextField(
-                      onChanged: (value) {
-                        cardName = value;
+                    Text('アイコンを追加:'),
+                    SizedBox(width: 10),
+                    ElevatedButton(
+                      child: Text('選択'),
+                      onPressed: () async {
+                        setState(() {
+                          ischecked = Icons.card_giftcard;
+                          selectedIcons = ischecked;
+                        });
+                        _addIcon((icon) {
+                          setState(() {
+                            selectedIcons = icon;
+                          });
+                        }, selectedIcons);
                       },
-                      decoration: InputDecoration(
-                        hintText: 'カード名を入力してください',
-                      ),
                     ),
-                    TextField(
-                      onChanged: (value) {
-                        cardNote = value;
+                  ],
+                ),
+                Row(children: [
+                  Text('          選択中:'),
+                  Icon(selectedIcons),
+                ]),
+                Row(
+                  children: [
+                    Text('テンプレート:'),
+                    SizedBox(width: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        _selectCardTemplate((color, icon) {
+                          setState(() {
+                            selectedColor = color;
+                            templateIcons = icon;
+                          });
+                        });
                       },
-                      decoration: InputDecoration(
-                        hintText: '備考情報を入力してください',
-                      ),
+                      child: Text('選択'),
                     ),
+                  ],
+                ),
+                Column(children: [
+                  Row(children: [
+                    Text('          選択中:'),
+                    Icon(templateIcons),
+                    show_template(selectedColor),
+                  ]),
+                  Container(
+                    height: 50,
+                    width: 75,
+                    decoration: BoxDecoration(
+                      color: selectedColor,
+                      border: Border.all(color: Colors.black, width: 0.1),
+                    ),
+                  ),
+                ]),
+                Column(
+                  children: [
                     Row(
                       children: [
-                        Text('アイコンを追加:'),
+                        Text('スタンプ:'),
                         SizedBox(width: 10),
                         ElevatedButton(
-                          child: Text('選択'),
-                          onPressed: () async {
-                            setState(() {
-                              ischecked = Icons.card_giftcard;
-                              selectedIcons = ischecked;
-                            });
-                            _addIcon((icon) {
+                          onPressed: () {
+                            _customizeStamp((icon, color) {
                               setState(() {
-                                selectedIcons = icon;
+                                stampIcon = icon;
+                                stampColor = color;
                               });
-                            }, selectedIcons);
+                            });
                           },
+                          child: Text('カスタマイズ'),
                         ),
                       ],
                     ),
                     Row(children: [
-                      Text('          選択中:        '),
-                      Icon(selectedIcons),
-                    ]),
-                    Row(
-                      children: [
-                        Text('テンプレート:'),
-                        SizedBox(width: 10),
-                        ElevatedButton(
-                          onPressed: () {
-                            _selectCardTemplate((color, icon) {
-                              setState(() {
-                                selectedColor = color;
-                                templateIcons = icon;
-                              });
-                            });
-                          },
-                          child: Text('選択'),
-                        ),
-                      ],
-                    ),
-                    Column(children: [
-                      Row(children: [
-                        Text('          選択中:'),
-                        Icon(templateIcons),
-                        show_template(selectedColor),
-                      ]),
-                      Container(
-                        height: 50,
-                        width: 75,
-                        decoration: BoxDecoration(
-                          color: selectedColor,
-                          border: Border.all(color: Colors.black, width: 0.1),
-                        ),
-                      ),
-                    ]),
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text('スタンプを選ぶ:'),
-                            SizedBox(width: 10),
-                            ElevatedButton(
-                              onPressed: () {
-                                _customizeStamp((icon, color) {
-                                  setState(() {
-                                    stampIcon = icon;
-                                    stampColor = color;
-                                  });
-                                });
-                              },
-                              child: Text('カスタマイズ'),
-                            ),
-                          ],
-                        ),
-                        Row(children: [
-                          Text('          選択中:            '),
-                          Icon(stampIcon, color: stampColor),
-                        ])
-                      ],
-                    ),
+                      Text('          選択中:'),
+                      Icon(stampIcon, color: stampColor),
+                    ])
                   ],
                 ),
-              ),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('キャンセル'),
-                ),
-                TextButton(
-                  child: Text('作成'),
-                  onPressed: () {
-                    if (cardName.isNotEmpty) {
-                      setState(() {
-                        _cards.add(PointCard(
-                          cardName: cardName,
-                          note: cardNote,
-                          color: selectedColor,
-                          icons: selectedIcons,
-                          maxPoints: maxPoints,
-                          backgroundImagePath: backgroundImagePath,
-                          stampIcon: stampIcon,
-                          stampColor: stampColor,
-                        ));
-                      });
-                      Navigator.of(context).pop();
-                    }
-                  },
-                ),
               ],
-            );
-          },
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('キャンセル'),
+            ),
+            TextButton(
+              child: Text('作成'),
+              onPressed: () {
+                if (cardName.isNotEmpty) {
+                  setState(() {
+                    _cards.add(PointCard(
+                      cardName: cardName,
+                      note: cardNote,
+                      color: selectedColor,
+                      icons: selectedIcons,
+                      maxPoints: maxPoints,
+                      backgroundImagePath: backgroundImagePath,
+                      stampIcon: stampIcon,
+                      stampColor: stampColor,
+                    ));
+                  });
+                  Navigator.of(context).pop();
+                }
+              },
+            ),
+          ],
         );
       },
     );
