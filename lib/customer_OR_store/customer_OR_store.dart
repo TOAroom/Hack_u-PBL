@@ -32,6 +32,10 @@ class Customer_OR_Store extends StatelessWidget {
               color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => navigateTo(context, '/choice_cs'),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
