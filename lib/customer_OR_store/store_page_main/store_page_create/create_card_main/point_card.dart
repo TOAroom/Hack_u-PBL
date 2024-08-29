@@ -4,7 +4,7 @@ class PointCard {
   final String cardName;
   final String note;
   final Color color;
-  final List<IconData> icons;
+  final IconData icons;
   final int maxPoints;
   final String? backgroundImagePath;
   final IconData stampIcon; // スタンプアイコン
