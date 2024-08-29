@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import 'userlist_page.dart';
+import 'package:vscode_test/customer_OR_store/store_page_main/store_Page_main.dart';
 
 class PointgiveCompletion extends StatelessWidget {
   const PointgiveCompletion({super.key});
@@ -18,16 +17,20 @@ class PointgiveCompletion extends StatelessWidget {
     final backButton = ElevatedButton(
       onPressed: () => back(context),
       // MEMO: primary は古くなったので backgroundColor へ変更しました
-      style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-      child: const Text('< ホームに戻る'),
+      style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.grey, minimumSize: Size(double.infinity, 60)),
+      child: const Text(
+        'ホームに戻る',
+        style: TextStyle(color: Colors.white, fontSize: 20),
+      ),
     );
 
     // 画面の上に表示するバー
     final appBar = AppBar(
       leading: TextButton(
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Givepoint()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => Store_Pagemain()));
         },
         child: const Text(
           '完了',
@@ -48,6 +51,13 @@ class PointgiveCompletion extends StatelessWidget {
     );
 
     // 画面全体
-    return Scaffold(appBar: appBar, body: Center(child: backButton));
+    return Scaffold(
+        appBar: appBar,
+        body: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [const SizedBox(height: 0), backButton],
+            )));
   }
 }
