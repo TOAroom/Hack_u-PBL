@@ -1,5 +1,8 @@
+import 'dart:convert';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:go_router/go_router.dart';
 
 //
@@ -38,42 +41,38 @@ class Pagedelivery extends StatelessWidget {
     // 画面全体
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'カード配布画面',
-          style: TextStyle(color: Colors.white),
-        ),
-
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => back(context),
-        ),
-
-        automaticallyImplyLeading:
-            false, //デフォルトだと左上に←ボタン（よく見る戻るボタン）が出てくる。今回は「戻る」ボタンを自作したためfalseにしてある
-        backgroundColor: const Color.fromARGB(255, 94, 199, 73),
-
+        title: Text('QR Code Demo'),
+        backgroundColor: const Color.fromARGB(255, 47, 159, 167),
         centerTitle: true,
       ),
       body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          QrImageView(
-            data: qrText,
-            //値渡しのために変更する必要あり（8/27 15:58）
-            //画像をbase64でエンコード、文字列としてQRコードを作成 -> 読み込みアプリ側でデコードして画像表示（8/27 23:28）
-            //画像はストレージサーバに保存しておき、ストレージのURLを書いたQRコードを作成 -> 読み込みアプリでダウンロード（8/27 23:28）
-
-            size: 200,
-          ),
-          const Text(
-            '配布用QR',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 15.0,
-            ),
-          ),
-        ]), //カラム、チルドレンを使って複数処理を書いている
+        child: FutureBuilder<String>(
+            future: _loadImageAsBase64(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    QrImageView(
+                      data: snapshot.data!,
+                      size: 200,
+                    ),
+                    Text('これはQRコードです'),
+                  ],
+                );
+              }
+            }),
       ),
     );
+  }
+
+  Future<String> _loadImageAsBase64() async {
+    final ByteData bytes = await rootBundle.load("images/ポイントカード.png");
+    final Uint8List list = bytes.buffer.asUint8List();
+    return base64Encode(list);
   }
 }
