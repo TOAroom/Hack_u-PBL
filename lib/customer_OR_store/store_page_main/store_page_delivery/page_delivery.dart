@@ -62,7 +62,6 @@ class Pagedelivery extends StatelessWidget {
                       size: 200,
                     ),
                     Text('これはQRコードです'),
-                    Image.asset("images/no_photo.jpg"),
                   ],
                 );
               }
