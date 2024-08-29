@@ -125,9 +125,72 @@ class _CardListPageState extends State<CardListPage> {
                       ],
                     ),
                     Row(children: [
+<<<<<<< HEAD
                       Text('          選択中:'),
                       Icon(stampIcon, color: stampColor),
                     ])
+=======
+                      Text('          選択中:        '),
+                      Icon(selectedIcons),
+                    ]),
+                    Row(
+                      children: [
+                        Text('テンプレート:'),
+                        SizedBox(width: 10),
+                        ElevatedButton(
+                          onPressed: () {
+                            _selectCardTemplate((color, icon) {
+                              setState(() {
+                                selectedColor = color;
+                                templateIcons = icon;
+                              });
+                            });
+                          },
+                          child: Text('選択'),
+                        ),
+                      ],
+                    ),
+                    Column(children: [
+                      Row(children: [
+                        Text('          選択中:'),
+                        Icon(templateIcons),
+                        show_template(selectedColor),
+                      ]),
+                      Container(
+                        height: 50,
+                        width: 75,
+                        decoration: BoxDecoration(
+                          color: selectedColor,
+                          border: Border.all(color: Colors.black, width: 0.1),
+                        ),
+                      ),
+                    ]),
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text('スタンプを選ぶ:'),
+                            SizedBox(width: 10),
+                            ElevatedButton(
+                              onPressed: () {
+                                _customizeStamp((icon, color) {
+                                  setState(() {
+                                    stampIcon = icon;
+                                    stampColor = color;
+                                  });
+                                });
+                              },
+                              child: Text('カスタマイズ'),
+                            ),
+                          ],
+                        ),
+                        Row(children: [
+                          Text('          選択中:            '),
+                          Icon(stampIcon, color: stampColor),
+                        ])
+                      ],
+                    ),
+>>>>>>> 796150c42bdc1ea510f8017b9232e8f56cd270c0
                   ],
                 ),
               ],
