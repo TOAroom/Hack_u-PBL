@@ -59,6 +59,23 @@ class c_Pagemain extends StatelessWidget {
                 style: TextStyle(color: Color.fromARGB(255, 48, 48, 48)),
               ),
             ),
+            const SizedBox(height: 35.0),
+            ElevatedButton(
+              onPressed: () => navigateTo(context, '/scaner'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                minimumSize: Size(double.infinity, 60),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                textStyle:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              child: const Text(
+                'ポイントカード作成',
+                style: TextStyle(color: Color.fromARGB(255, 48, 48, 48)),
+              ),
+            ),
           ],
         ),
       ),
