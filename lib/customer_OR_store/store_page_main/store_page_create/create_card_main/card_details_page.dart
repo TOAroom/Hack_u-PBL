@@ -31,13 +31,6 @@ class _CardDetailsPageState extends State<CardDetailsPage> {
         backgroundColor: const Color.fromARGB(255, 94, 199, 73),
         title: Text('カード名:  ' + widget.card.cardName,
             style: TextStyle(color: Colors.white)),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => CardListPage()));
-          },
-        ),
         centerTitle: true,
       ),
       body: Center(
