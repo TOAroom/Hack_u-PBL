@@ -152,6 +152,17 @@ class _CardListPageState extends State<CardListPage> {
                       stampColor);
                 },
               ),
+              /*Stack(
+                Container(
+                  height: 100,
+                  width: 75,
+                  decoration: BoxDecoration(
+                    color: selectedColor,
+                    border: Border.all(color: Colors.black, width: 0.1),
+                  ),
+                ),
+                Container(),
+              ),*/
             ],
           );
         });
