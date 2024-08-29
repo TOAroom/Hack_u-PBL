@@ -31,7 +31,14 @@ class _CardDetailsPageState extends State<CardDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.card.cardName),
+        backgroundColor: const Color.fromARGB(255, 94, 199, 73),
+        title: Text('カード名:  ' + widget.card.cardName,
+            style: TextStyle(color: Colors.white)),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => back(context),
+        ),
+        centerTitle: true,
       ),
       body: Center(
         child: Column(
@@ -40,10 +47,11 @@ class _CardDetailsPageState extends State<CardDetailsPage> {
             GestureDetector(
               onTap: _toggleCard, // カードをタップで表裏を切り替え
               child: Container(
-                height: 200,
-                width: 300,
+                height: 190,
+                width: 240,
                 decoration: BoxDecoration(
                   color: widget.card.color,
+                  border: Border.all(color: Colors.black, width: 0.1),
                   image: widget.card.backgroundImagePath != null && _isFront
                       ? DecorationImage(
                           image: AssetImage(widget.card.backgroundImagePath!),
@@ -80,6 +88,7 @@ class _CardDetailsPageState extends State<CardDetailsPage> {
               ),
             ),
             SizedBox(height: 20),
+            Text('配布用QRコード', style: TextStyle(fontSize: 16)),
             QrImageView(
               data: widget.card.cardName, // 表示したいデータ
               size: 200.0,
