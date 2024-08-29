@@ -72,7 +72,7 @@ class _CardListPageState extends State<CardListPage> {
                       ],
                     ),
                     Row(children: [
-                      Text('          選択中:'),
+                      Text('          選択中:        '),
                       Icon(selectedIcons),
                     ]),
                     Row(
@@ -111,7 +111,7 @@ class _CardListPageState extends State<CardListPage> {
                       children: [
                         Row(
                           children: [
-                            Text('スタンプ:'),
+                            Text('スタンプを選ぶ:'),
                             SizedBox(width: 10),
                             ElevatedButton(
                               onPressed: () {
@@ -127,7 +127,7 @@ class _CardListPageState extends State<CardListPage> {
                           ],
                         ),
                         Row(children: [
-                          Text('          選択中:'),
+                          Text('          選択中:            '),
                           Icon(stampIcon, color: stampColor),
                         ])
                       ],
