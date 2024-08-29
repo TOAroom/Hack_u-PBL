@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:math';
 import 'point_card.dart';
 import 'card_details_page.dart';
 
@@ -29,8 +28,6 @@ class _CardListPageState extends State<CardListPage> {
         return StatefulBuilder(
           builder: (BuildContext, StateSetter setState) {
             IconData ischecked = selectedIcons;
-            IconData stampIcon_ischecked = stampIcon;
-            Color stampColor_ischecked = stampColor;
 
             return AlertDialog(
               title: Text('新しいポイントカードを作成'),
