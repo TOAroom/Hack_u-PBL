@@ -469,6 +469,7 @@ class _CardListPageState extends State<CardListPage> {
         itemCount: _cards.length,
         itemBuilder: (context, index) {
           return ListTile(
+            leading: Icon(_cards[index].icons, color: Colors.black),
             title: Text(_cards[index].cardName),
             onTap: () {
               Navigator.push(
