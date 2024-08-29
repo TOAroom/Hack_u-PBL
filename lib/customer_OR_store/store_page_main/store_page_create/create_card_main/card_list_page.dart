@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'dart:math';
 import 'point_card.dart';
 import 'card_details_page.dart';
 
@@ -15,8 +14,9 @@ class _CardListPageState extends State<CardListPage> {
   void _createNewCard() {
     String cardName = '';
     String cardNote = '';
-    Color selectedColor = Colors.blue;
-    IconData selectedIcons = Icons.star;
+    Color selectedColor = Colors.white;
+    IconData selectedIcons = Icons.card_giftcard;
+    IconData templateIcons = Icons.credit_card;
     int maxPoints = 20;
     String? backgroundImagePath;
     IconData stampIcon = Icons.circle;
@@ -55,8 +55,8 @@ class _CardListPageState extends State<CardListPage> {
                       children: [
                         Text('アイコンを追加:'),
                         SizedBox(width: 10),
-                        IconButton(
-                          icon: Icon(Icons.add),
+                        ElevatedButton(
+                          child: Text('選択'),
                           onPressed: () async {
                             setState(() {
                               ischecked = Icons.card_giftcard;
@@ -71,20 +71,20 @@ class _CardListPageState extends State<CardListPage> {
                         ),
                       ],
                     ),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Text('選択中のアイコン: '),
+                    Row(children: [
+                      Text('          選択中:'),
                       Icon(selectedIcons),
                     ]),
                     Row(
                       children: [
                         Text('テンプレート:'),
                         SizedBox(width: 10),
-                        TextButton(
+                        ElevatedButton(
                           onPressed: () {
                             _selectCardTemplate((color, icon) {
                               setState(() {
                                 selectedColor = color;
-                                selectedIcons = icon;
+                                templateIcons = icon;
                               });
                             });
                           },
@@ -92,21 +92,44 @@ class _CardListPageState extends State<CardListPage> {
                         ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        Text('スタンプ:'),
-                        SizedBox(width: 10),
-                        TextButton(
-                          onPressed: () {
-                            _customizeStamp((icon, color) {
-                              setState(() {
-                                stampIcon = icon;
-                                stampColor = color;
-                              });
-                            });
-                          },
-                          child: Text('カスタマイズ'),
+                    Column(children: [
+                      Row(children: [
+                        Text('          選択中:'),
+                        Icon(templateIcons),
+                        show_template(selectedColor),
+                      ]),
+                      Container(
+                        height: 50,
+                        width: 75,
+                        decoration: BoxDecoration(
+                          color: selectedColor,
+                          border: Border.all(color: Colors.black, width: 0.1),
                         ),
+                      ),
+                    ]),
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text('スタンプ:'),
+                            SizedBox(width: 10),
+                            ElevatedButton(
+                              onPressed: () {
+                                _customizeStamp((icon, color) {
+                                  setState(() {
+                                    stampIcon = icon;
+                                    stampColor = color;
+                                  });
+                                });
+                              },
+                              child: Text('カスタマイズ'),
+                            ),
+                          ],
+                        ),
+                        Row(children: [
+                          Text('          選択中:'),
+                          Icon(stampIcon, color: stampColor),
+                        ])
                       ],
                     ),
                   ],
@@ -145,6 +168,17 @@ class _CardListPageState extends State<CardListPage> {
         );
       },
     );
+  }
+
+  Text show_template(Color selectedColor) {
+    if (selectedColor.value == Colors.white.value) {
+      return Text('シンプル');
+    } else if (selectedColor.value == Colors.pink.value) {
+      return Text('カジュアル');
+    } else if (selectedColor.value == Colors.grey.value) {
+      return Text('ビジネス');
+    }
+    return Text('何も選択していません');
   }
 
   void _viewCardDetails(PointCard card) {
@@ -280,63 +314,89 @@ class _CardListPageState extends State<CardListPage> {
 
     showDialog(
       context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('スタンプをカスタマイズ'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              DropdownButton<IconData>(
-                value: selectedIcon,
-                items: const [
-                  DropdownMenuItem(
-                    value: Icons.circle,
-                    child: Icon(Icons.circle),
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext, StateSetter setState) {
+            IconData iconIschecked = selectedIcon;
+            Color colorIschecked = selectedColor;
+
+            return AlertDialog(
+              title: const Text('スタンプをカスタマイズ'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  DropdownButton<IconData>(
+                    value: iconIschecked,
+                    onChanged: (IconData? value) {
+                      setState(() {
+                        iconIschecked = (value ?? iconIschecked);
+                        selectedIcon = iconIschecked;
+                      });
+                    },
+                    items: const [
+                      DropdownMenuItem(
+                        value: Icons.circle,
+                        child: Icon(Icons.circle),
+                      ),
+                      DropdownMenuItem(
+                        value: Icons.star,
+                        child: Icon(Icons.star),
+                      ),
+                      DropdownMenuItem(
+                        value: Icons.favorite,
+                        child: Icon(Icons.favorite),
+                      ),
+                    ],
                   ),
-                  DropdownMenuItem(
-                    value: Icons.star,
-                    child: Icon(Icons.star),
+                  DropdownButton<Color>(
+                    value: colorIschecked,
+                    onChanged: (Color? value) {
+                      setState(() {
+                        colorIschecked = (value ?? colorIschecked);
+                        selectedColor = colorIschecked;
+                      });
+                    },
+                    items: const [
+                      DropdownMenuItem(
+                        value: Colors.red,
+                        child: Text('Red'),
+                      ),
+                      DropdownMenuItem(
+                        value: Colors.green,
+                        child: Text('Green'),
+                      ),
+                      DropdownMenuItem(
+                        value: Colors.blue,
+                        child: Text('Blue'),
+                      ),
+                    ],
                   ),
-                  DropdownMenuItem(
-                    value: Icons.favorite,
-                    child: Icon(Icons.favorite),
-                  ),
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text('カスタマイズしたスタンプ'),
+                          Icon(
+                            selectedIcon,
+                            color: selectedColor,
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
                 ],
-                onChanged: (value) {
-                  selectedIcon = value!;
-                },
               ),
-              DropdownButton<Color>(
-                value: selectedColor,
-                items: const [
-                  DropdownMenuItem(
-                    value: Colors.red,
-                    child: Text('Red'),
-                  ),
-                  DropdownMenuItem(
-                    value: Colors.green,
-                    child: Text('Green'),
-                  ),
-                  DropdownMenuItem(
-                    value: Colors.blue,
-                    child: Text('Blue'),
-                  ),
-                ],
-                onChanged: (value) {
-                  selectedColor = value!;
-                },
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                onStampCustomized(selectedIcon, selectedColor);
-                Navigator.of(context).pop();
-              },
-              child: const Text('設定'),
-            ),
-          ],
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    onStampCustomized(selectedIcon, selectedColor);
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('設定'),
+                ),
+              ],
+            );
+          },
         );
       },
     );
