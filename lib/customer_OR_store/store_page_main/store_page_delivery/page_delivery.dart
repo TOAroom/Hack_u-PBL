@@ -71,7 +71,7 @@ class Pagedelivery extends StatelessWidget {
   }
 
   Future<String> _loadImageAsBase64() async {
-    final ByteData bytes = await rootBundle.load("images/ポイントカード.png");
+    final ByteData bytes = await rootBundle.load("images/");
     final Uint8List list = bytes.buffer.asUint8List();
     return base64Encode(list);
   }
