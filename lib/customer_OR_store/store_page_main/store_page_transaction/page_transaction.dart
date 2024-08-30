@@ -102,7 +102,7 @@ class _Pagetransaction2State extends ConsumerState<Pagetransaction2> {
       automaticallyImplyLeading: false,
       backgroundColor: const Color.fromARGB(255, 94, 199, 73),
       title: const Text(
-        '相手のスマホに近づけて準備を完了してください',
+        '相手のスマホに近づいたら準備完了!',
         style: TextStyle(color: Colors.white),
       ),
       centerTitle: true,
@@ -138,7 +138,7 @@ class _Pagetransaction2State extends ConsumerState<Pagetransaction2> {
                       strokeWidth: 2.0,
                       strokeColor: Colors.white,
                       child: const Text(
-                        '通信準備完了!',
+                        '近づいたらタッチ!',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
