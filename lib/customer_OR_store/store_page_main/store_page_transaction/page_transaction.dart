@@ -102,7 +102,7 @@ class _Pagetransaction2State extends ConsumerState<Pagetransaction2> {
       automaticallyImplyLeading: false,
       backgroundColor: const Color.fromARGB(255, 94, 199, 73),
       title: const Text(
-        '相手のスマホに近づいたら準備完了!',
+        '通信相手を探しています',
         style: TextStyle(color: Colors.white),
       ),
       centerTitle: true,
@@ -133,18 +133,10 @@ class _Pagetransaction2State extends ConsumerState<Pagetransaction2> {
                     size: 100,
                   ),
                   const SizedBox(height: 100),
-                  ElevatedButton.icon(
-                    label: BorderedText(
-                      strokeWidth: 2.0,
-                      strokeColor: Colors.white,
-                      child: const Text(
-                        '近づいたらタッチ!',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                  ElevatedButton(
+                    child: const Text(
+                      '近づいたらタッチ!',
+                      style: TextStyle(color: Color.fromARGB(255, 94, 199, 73)),
                     ),
                     onPressed: () {
                       _timer?.cancel(); // ボタンが押されたらタイマーを停止
@@ -154,15 +146,14 @@ class _Pagetransaction2State extends ConsumerState<Pagetransaction2> {
                       startProgress(); // ボタンが押されたら進捗を開始
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
-                      elevation: 5,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 75, vertical: 75),
-                      side: const BorderSide(color: Colors.white),
+                      backgroundColor: Colors.white,
+                      minimumSize: Size(100, 100),
+                      side: BorderSide(color: Color.fromARGB(255, 94, 199, 73)),
+                      textStyle: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  const SizedBox(height: 200),
+                  const SizedBox(height: 100),
                 ],
               ),
       ),

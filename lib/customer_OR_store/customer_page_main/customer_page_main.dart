@@ -46,12 +46,11 @@ class c_Pagemain extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 35.0),
             ElevatedButton(
               onPressed: () => navigateTo(context, '/list'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
-                minimumSize: Size(100, 100),
+                minimumSize: Size(10, 100),
                 side: BorderSide(color: Color.fromARGB(255, 94, 199, 73)),
                 textStyle:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -61,12 +60,12 @@ class c_Pagemain extends StatelessWidget {
                 style: TextStyle(color: Color.fromARGB(255, 94, 199, 73)),
               ),
             ),
-            const SizedBox(height: 35.0),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () => navigateTo(context, '/scaner'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
-                minimumSize: Size(100, 100),
+                minimumSize: Size(10, 100),
                 side: BorderSide(color: Color.fromARGB(255, 94, 199, 73)),
                 textStyle:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -76,6 +75,7 @@ class c_Pagemain extends StatelessWidget {
                 style: TextStyle(color: Color.fromARGB(255, 94, 199, 73)),
               ),
             ),
+            const SizedBox(height: 50)
           ],
         ),
       ),
