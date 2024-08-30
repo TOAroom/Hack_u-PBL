@@ -40,7 +40,7 @@ class _ApplicationLogoState extends State<ApplicationLogo> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 94, 199, 73),
       body: Center(
-          child: const Text('ポ' + 'ケ' + 'っ' + 'と' + 'か' + 'ー' + 'ど',
+          child: const Text('ポケっとかーど',
                   style: TextStyle(
                       color: Colors.white, fontSize: 60, fontFamily: 'nicoca'))
               .animate(onPlay: (controller) => controller.repeat())

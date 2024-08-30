@@ -26,11 +26,6 @@ class Pagecreate extends StatelessWidget {
       centerTitle: true,
     );
 
-    ButtonStyle style = ElevatedButton.styleFrom(
-      elevation: 5,
-      padding: const EdgeInsets.symmetric(horizontal: 75, vertical: 50),
-    );
-
     // 画面全体
     return Scaffold(
       appBar: appBar,
@@ -44,12 +39,17 @@ class Pagecreate extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CreateCardMain()));
               },
-              style: style,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                minimumSize: Size(100, 60),
+                side: BorderSide(color: Color.fromARGB(255, 94, 199, 73)),
+                textStyle:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
               child: const Text(
                 'ポイントカードを作成する',
                 style: TextStyle(
-                  fontSize: 18,
-                ),
+                    fontSize: 18, color: Color.fromARGB(255, 94, 199, 73)),
               ),
             ),
           ],

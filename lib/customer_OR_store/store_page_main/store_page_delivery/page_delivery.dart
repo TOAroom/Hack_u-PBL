@@ -42,7 +42,7 @@ class Pagedelivery extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('QR Code Demo'),
-        backgroundColor: const Color.fromARGB(255, 47, 159, 167),
+        backgroundColor: Color.fromARGB(255, 94, 199, 73),
         centerTitle: true,
       ),
       body: Center(

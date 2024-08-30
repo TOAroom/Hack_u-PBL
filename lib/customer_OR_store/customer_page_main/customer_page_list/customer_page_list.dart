@@ -25,7 +25,7 @@ class Pagelist extends StatelessWidget {
       ),
       automaticallyImplyLeading:
           false, //デフォルトだと左上に←ボタン（よく見る戻るボタン）が出てくる。今回は「戻る」ボタンを自作したためfalseにしてある
-      backgroundColor: const Color.fromARGB(255, 47, 159, 167),
+      backgroundColor: Color.fromARGB(255, 94, 199, 73),
       title: const Text(
         'ポイントカード一覧',
         style: TextStyle(color: Colors.white),
