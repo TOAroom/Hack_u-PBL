@@ -32,7 +32,11 @@ class c_Pagemain extends StatelessWidget {
         title: const Text(
           'ポケっとかーど',
           style: TextStyle(
-              color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+            color: Colors.white,
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'nicoca',
+          ),
         ),
         centerTitle: true,
       ),

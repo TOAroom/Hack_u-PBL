@@ -19,6 +19,7 @@ dependencies:
   flutter:
     sdk: flutter
   image_picker: ^1.0.0 #追加
+  flutter_animate:
 
 
 
@@ -41,5 +42,11 @@ flutter:
   assets:
     - images/
   uses-material-design: true
+  fonts:
+    - family: nicoca
+      fonts:
+        - asset: images\nicoca_v2.ttf
+  //https://nicofont.pupu.jp/nicoca.html
+
 
   

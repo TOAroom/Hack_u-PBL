@@ -27,20 +27,6 @@ class PointgiveCompletion extends StatelessWidget {
 
     // 画面の上に表示するバー
     final appBar = AppBar(
-      leading: TextButton(
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Store_Pagemain()));
-        },
-        child: const Text(
-          '完了',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 15.0,
-          ),
-        ),
-      ),
       automaticallyImplyLeading: false,
       backgroundColor: const Color.fromARGB(255, 94, 199, 73),
       title: const Text(

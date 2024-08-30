@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:vscode_test/customer_OR_store/store_page_main/store_page_create/create_card_main/card_list_page.dart';
 import 'point_card.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'card_list_page.dart';
 
 class CardDetailsPage extends StatefulWidget {
   final PointCard card;
