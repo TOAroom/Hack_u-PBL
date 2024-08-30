@@ -128,6 +128,7 @@ class CardDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(model.name),
+        backgroundColor: Color.fromARGB(255, 94, 199, 73),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

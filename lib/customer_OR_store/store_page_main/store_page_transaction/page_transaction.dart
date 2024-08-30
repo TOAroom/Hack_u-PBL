@@ -135,7 +135,7 @@ class _Pagetransaction2State extends ConsumerState<Pagetransaction2> {
                   const SizedBox(height: 100),
                   ElevatedButton(
                     child: Text(
-                      'スマホを近づけたらタッチ!',
+                      'スマホを近づけたらここをタッチ!',
                       style: TextStyle(color: Color.fromARGB(255, 94, 199, 73)),
                     ),
                     onPressed: () {

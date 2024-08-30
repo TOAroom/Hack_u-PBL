@@ -29,7 +29,7 @@ class _CardListPageState extends State<CardListPage> {
           IconData ischecked = selectedIcons;
 
           return AlertDialog(
-            title: Text('新しいポイントカードを作成'),
+            title: Text('ポイントカードを作成'),
             content: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -173,7 +173,7 @@ class _CardListPageState extends State<CardListPage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('作成するポイントカードのプレビュー'),
+            title: const Text('ポイントカードプレビュ'),
             content: SingleChildScrollView(
               child: Column(children: [
                 Container(
@@ -470,7 +470,7 @@ class _CardListPageState extends State<CardListPage> {
       //Appbarの設定
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 94, 199, 73),
-        title: const Text('作成したポイントカード', style: TextStyle(color: Colors.white)),
+        title: const Text('ポイントカード一覧', style: TextStyle(color: Colors.white)),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () => back(context),
