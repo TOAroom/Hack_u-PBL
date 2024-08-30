@@ -9,6 +9,7 @@ import 'customer_OR_store/store_page_main/store_page_transaction/page_transactio
 import 'customer_OR_store/customer_OR_store.dart';
 import 'customer_OR_store/store_page_main/store_Page_main.dart';
 import 'customer_OR_store/store_page_main/store_page_transaction/userlist_page.dart';
+import 'customer_OR_store/customer_page_main/customer_camera/QRreader.dart';
 import 'customer_OR_store/store_page_main/store_page_transaction/pointgive_completion_page.dart';
 
 main() {
@@ -59,6 +60,10 @@ class App extends StatelessWidget {
       GoRoute(
         path: '/givecompletion',
         builder: (context, state) => const PointgiveCompletion(),
+      ),
+       GoRoute(//自分のつけたし
+        path: '/scaner',
+        builder: (context, state) => const QrScanView(),
       ),
     ],
   );
