@@ -1,11 +1,9 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-//
-// 画面 取引
-//
-//
+import 'package:bordered_text/bordered_text.dart';
 
 class Pagetransaction extends StatelessWidget {
   const Pagetransaction({super.key});
@@ -30,16 +28,36 @@ class Pagetransaction2 extends ConsumerStatefulWidget {
 }
 
 class _Pagetransaction2State extends ConsumerState<Pagetransaction2> {
-  bool _hasStarted = false;
+  bool _isCommunicating = false;
+  int _currentIconIndex = 0;
+  Timer? _timer;
+
+  final List<IconData> wifiIcons = [
+    Icons.network_wifi_1_bar,
+    Icons.network_wifi_2_bar,
+    Icons.network_wifi_3_bar,
+    Icons.network_wifi,
+    Icons.signal_wifi_4_bar,
+  ];
 
   @override
   void initState() {
     super.initState();
-    // 画面が表示されたときに進捗を開始
-    if (!_hasStarted) {
-      _hasStarted = true;
-      startProgress();
-    }
+    startIconRotation();
+  }
+
+  void startIconRotation() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        _currentIconIndex = (_currentIconIndex + 1) % wifiIcons.length;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   void startProgress() async {
@@ -64,11 +82,6 @@ class _Pagetransaction2State extends ConsumerState<Pagetransaction2> {
     }
   }
 
-  // 戻るボタンを押したとき
-  void back(BuildContext context) {
-    context.pop();
-  }
-
   @override
   Widget build(BuildContext context) {
     final percent = ref.watch(percentProvider);
@@ -85,38 +98,11 @@ class _Pagetransaction2State extends ConsumerState<Pagetransaction2> {
       width: 350,
     );
 
-    final column = Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'ポイント付与相手を検索中',
-              style: TextStyle(fontSize: 18),
-            ),
-          ),
-        ),
-        linear,
-      ],
-    );
-
     final appBar = AppBar(
-      /*leading: TextButton(
-        onPressed: () => back(context),
-        child: const Text(
-          '戻る',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 15.0,
-          ),
-        ),
-      ),*/ //通信中（疑似的）に戻るボタンを押すとエラーが発生するためコメント化
       automaticallyImplyLeading: false,
       backgroundColor: const Color.fromARGB(255, 94, 199, 73),
       title: const Text(
-        'ポイント付与',
+        '相手のスマホに近づけて準備を完了してください',
         style: TextStyle(color: Colors.white),
       ),
       centerTitle: true,
@@ -125,12 +111,60 @@ class _Pagetransaction2State extends ConsumerState<Pagetransaction2> {
     return Scaffold(
       appBar: appBar,
       body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            column,
-          ],
-        ),
+        child: _isCommunicating
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(16.0),
+                    child: const Text(
+                      'ポイント付与相手を検索中',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                  ),
+                  linear,
+                ],
+              )
+            : Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    wifiIcons[_currentIconIndex],
+                    size: 100,
+                  ),
+                  const SizedBox(height: 100),
+                  ElevatedButton.icon(
+                    label: BorderedText(
+                      strokeWidth: 2.0,
+                      strokeColor: Colors.white,
+                      child: const Text(
+                        '通信準備完了!',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    onPressed: () {
+                      _timer?.cancel(); // ボタンが押されたらタイマーを停止
+                      setState(() {
+                        _isCommunicating = true;
+                      });
+                      startProgress(); // ボタンが押されたら進捗を開始
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                      elevation: 5,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 75, vertical: 75),
+                      side: const BorderSide(color: Colors.white),
+                    ),
+                  ),
+                  const SizedBox(height: 200),
+                ],
+              ),
       ),
     );
   }

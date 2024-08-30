@@ -52,7 +52,7 @@ class _CardListPageState extends State<CardListPage> {
                   ),
                   Row(
                     children: [
-                      Text('アイコンを追加:'),
+                      Text('アイコン:'),
                       SizedBox(width: 10),
                       ElevatedButton(
                         child: Text('選択'),

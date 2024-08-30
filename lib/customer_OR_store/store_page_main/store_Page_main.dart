@@ -94,7 +94,7 @@ class Store_Pagemain extends StatelessWidget {
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               child: const Text(
-                'ポイント取引',
+                'ポイント付与',
                 style: TextStyle(color: Color.fromARGB(255, 48, 48, 48)),
               ),
             ),
