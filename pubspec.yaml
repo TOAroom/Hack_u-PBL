@@ -11,6 +11,7 @@ environment:
 
 
 dependencies:
+  flutter_animate:
   shared_preferences:
   percent_indicator:
   permission_handler: ^10.2.0 #追加部分 
@@ -19,7 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
   image_picker: ^1.0.0 #追加
-  flutter_animate:
+
 
 
 
@@ -46,7 +47,7 @@ flutter:
     - family: nicoca
       fonts:
         - asset: images\nicoca_v2.ttf
-  //https://nicofont.pupu.jp/nicoca.html
+  #https://nicofont.pupu.jp/nicoca.html
 
 
   

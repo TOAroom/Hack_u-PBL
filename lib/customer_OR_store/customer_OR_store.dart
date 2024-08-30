@@ -38,7 +38,7 @@ class Customer_OR_Store extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () => navigateTo(context, '/choice_cs'),
+          onPressed: () => navigateTo(context, '/logo'),
         ),
       ),
       body: Padding(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:go_router/go_router.dart';
-import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class ApplicationLogo extends StatefulWidget {
