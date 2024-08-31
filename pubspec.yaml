@@ -20,18 +20,9 @@ dependencies:
   flutter:
     sdk: flutter
   image_picker: ^1.0.0 #追加
-  firebase_core: 
-  firebase_auth: 
-  firebase_storage: 
   path_provider: 
   qr_code_scanner:
   flutter_animate:
-
-
-
-
-
- 
   cupertino_icons: ^1.0.8
   flutter_nearby_connections: ^1.1.2
   device_info_plus: ^10.1.2
