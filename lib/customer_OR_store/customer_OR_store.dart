@@ -29,9 +29,17 @@ class Customer_OR_Store extends StatelessWidget {
         title: const Text(
           'ポケっとかーど',
           style: TextStyle(
-              color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+            color: Colors.white,
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'nicoca',
+          ),
         ),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => navigateTo(context, '/logo'),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

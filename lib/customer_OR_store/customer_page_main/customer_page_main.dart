@@ -32,7 +32,11 @@ class c_Pagemain extends StatelessWidget {
         title: const Text(
           'ポケっとかーど',
           style: TextStyle(
-              color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+            color: Colors.white,
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'nicoca',
+          ),
         ),
         centerTitle: true,
       ),
@@ -42,23 +46,36 @@ class c_Pagemain extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 35.0),
             ElevatedButton(
               onPressed: () => navigateTo(context, '/list'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                minimumSize: Size(double.infinity, 60),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
+                backgroundColor: Colors.white,
+                minimumSize: Size(10, 100),
+                side: BorderSide(color: Color.fromARGB(255, 94, 199, 73)),
                 textStyle:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               child: const Text(
                 'ポイントカード一覧',
-                style: TextStyle(color: Color.fromARGB(255, 48, 48, 48)),
+                style: TextStyle(color: Color.fromARGB(255, 94, 199, 73)),
               ),
             ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () => navigateTo(context, '/scaner'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                minimumSize: Size(10, 100),
+                side: BorderSide(color: Color.fromARGB(255, 94, 199, 73)),
+                textStyle:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              child: const Text(
+                'ポイントカード作成',
+                style: TextStyle(color: Color.fromARGB(255, 94, 199, 73)),
+              ),
+            ),
+            const SizedBox(height: 50)
           ],
         ),
       ),

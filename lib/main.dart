@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vscode_test/customer_OR_store/application_logo.dart';
 
 import 'customer_OR_store/store_page_main/store_page_delivery/page_delivery.dart';
 import 'customer_OR_store/customer_page_main/customer_page_main.dart';
@@ -9,6 +10,7 @@ import 'customer_OR_store/store_page_main/store_page_transaction/page_transactio
 import 'customer_OR_store/customer_OR_store.dart';
 import 'customer_OR_store/store_page_main/store_Page_main.dart';
 import 'customer_OR_store/store_page_main/store_page_transaction/userlist_page.dart';
+import 'customer_OR_store/customer_page_main/customer_camera/QRreader.dart';
 import 'customer_OR_store/store_page_main/store_page_transaction/pointgive_completion_page.dart';
 
 main() {
@@ -21,9 +23,13 @@ class App extends StatelessWidget {
 
   final router = GoRouter(
     // パス (アプリが起動したとき)
-    initialLocation: '/choice_cs',
+    initialLocation: '/logo',
     // パスと画面の組み合わせ
     routes: [
+      GoRoute(
+        path: '/logo',
+        builder: (context, state) => ApplicationLogo(),
+      ),
       GoRoute(
         path: '/choice_cs',
         builder: (context, state) => Customer_OR_Store(),
@@ -59,6 +65,11 @@ class App extends StatelessWidget {
       GoRoute(
         path: '/givecompletion',
         builder: (context, state) => const PointgiveCompletion(),
+      ),
+      GoRoute(
+        //自分のつけたし
+        path: '/scaner',
+        builder: (context, state) => const QrScanView(),
       ),
     ],
   );

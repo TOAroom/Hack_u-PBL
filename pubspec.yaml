@@ -11,6 +11,7 @@ environment:
 
 
 dependencies:
+  flutter_animate: ^4.5.0
   shared_preferences:
   percent_indicator:
   permission_handler: ^10.2.0 #追加部分 
@@ -27,6 +28,7 @@ dependencies:
 
 
 
+
  
   cupertino_icons: ^1.0.8
   flutter_nearby_connections: ^1.1.2
@@ -35,6 +37,7 @@ dependencies:
   flutter_blue_plus: ^1.32.12
   qr_flutter: ^4.1.0
   bordered_text: ^2.0.0
+  qr_code_scanner: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -46,5 +49,11 @@ flutter:
     - images/
 
   uses-material-design: true
+  fonts:
+    - family: nicoca
+      fonts:
+        - asset: images\nicoca_v2.ttf
+  #https://nicofont.pupu.jp/nicoca.html
+
 
   

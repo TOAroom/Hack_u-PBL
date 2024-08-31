@@ -31,9 +31,17 @@ class Store_Pagemain extends StatelessWidget {
       title: const Text(
         'ポケっとかーど',
         style: TextStyle(
-            color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+          color: Colors.white,
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'nicoca',
+        ),
       ),
       centerTitle: true,
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+        onPressed: () => navigateTo(context, '/choice_cs'),
+      ),
     );
 
     return Scaffold(
@@ -47,53 +55,48 @@ class Store_Pagemain extends StatelessWidget {
             ElevatedButton(
               onPressed: () => navigateTo(context, '/create'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                minimumSize: Size(double.infinity, 60),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
+                backgroundColor: Colors.white,
+                minimumSize: Size(10, 100),
+                side: BorderSide(color: Color.fromARGB(255, 94, 199, 73)),
                 textStyle:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               child: const Text(
                 'ポイントカード作成',
-                style: TextStyle(color: Color.fromARGB(255, 48, 48, 48)),
+                style: TextStyle(color: Color.fromARGB(255, 94, 199, 73)),
               ),
             ),
-            const SizedBox(height: 35.0),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () => navigateTo(context, '/delivery'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                minimumSize: Size(double.infinity, 60),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
+                backgroundColor: Colors.white,
+                minimumSize: Size(10, 100),
+                side: BorderSide(color: Color.fromARGB(255, 94, 199, 73)),
                 textStyle:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               child: const Text(
                 'ポイントカード受け渡し',
-                style: TextStyle(color: Color.fromARGB(255, 48, 48, 48)),
+                style: TextStyle(color: Color.fromARGB(255, 94, 199, 73)),
               ),
             ),
-            const SizedBox(height: 35.0),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () => navigateTo(context, '/transaction'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                minimumSize: Size(double.infinity, 60),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
+                backgroundColor: Colors.white,
+                minimumSize: Size(100, 100),
+                side: BorderSide(color: Color.fromARGB(255, 94, 199, 73)),
                 textStyle:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               child: const Text(
-                'ポイント取引',
-                style: TextStyle(color: Color.fromARGB(255, 48, 48, 48)),
+                'ポイント付与',
+                style: TextStyle(color: Color.fromARGB(255, 94, 199, 73)),
               ),
             ),
+            const SizedBox(height: 35.0),
           ],
         ),
       ),

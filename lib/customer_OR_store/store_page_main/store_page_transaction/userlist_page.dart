@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vscode_test/customer_OR_store/store_page_main/store_page_transaction/page_transaction.dart';
 
 import 'userdetail_page.dart';
 
@@ -57,40 +58,30 @@ class Userlist extends StatelessWidget {
       itemBuilder: (context, index) {
         final user = userdata[index]; //データの配列をuserに代入してる？　よくわからん
         return GestureDetector(
-          onTap: () {
-            //カードを押したときの処理↓
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    Userdetail(user: user), //最後あたりで定義しているページへの移動
-              ),
-            );
-          },
-          child: Container(
-            height: 150, //カードの高さ変更
-
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Userdetail()));
+            },
             //カードの文字表示などの設定
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      user.name,
-                      style: const TextStyle(fontSize: 18.0),
-                    ),
-                    Text(
-                      user.point,
-                      style: const TextStyle(fontSize: 18.0),
-                    ),
-                    Text(
-                      user.time,
-                      style: const TextStyle(color: Colors.grey),
-                    ),
-                  ],
-                ),
+            child: const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'yamada taro',
+                    style: const TextStyle(fontSize: 18.0),
+                  ),
+                  Text(
+                    '3ポイント',
+                    style: const TextStyle(fontSize: 18.0),
+                  ),
+                  Text(
+                    '2024/08/24',
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                ],
               ),
             ),
           ),

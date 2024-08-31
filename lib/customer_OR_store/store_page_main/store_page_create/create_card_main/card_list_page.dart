@@ -25,145 +25,203 @@ class _CardListPageState extends State<CardListPage> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        IconData ischecked = selectedIcons;
+        return StatefulBuilder(builder: (BuildContext, StateSetter setState) {
+          IconData ischecked = selectedIcons;
 
-        return AlertDialog(
-          title: Text('新しいポイントカードを作成'),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  onChanged: (value) {
-                    cardName = value;
-                  },
-                  decoration: InputDecoration(
-                    hintText: 'カード名を入力してください',
-                  ),
-                ),
-                TextField(
-                  onChanged: (value) {
-                    cardNote = value;
-                  },
-                  decoration: InputDecoration(
-                    hintText: '備考情報を入力してください',
-                  ),
-                ),
-                Row(
-                  children: [
-                    Text('アイコンを追加:'),
-                    SizedBox(width: 10),
-                    ElevatedButton(
-                      child: Text('選択'),
-                      onPressed: () async {
-                        setState(() {
-                          ischecked = Icons.card_giftcard;
-                          selectedIcons = ischecked;
-                        });
-                        _addIcon((icon) {
-                          setState(() {
-                            selectedIcons = icon;
-                          });
-                        }, selectedIcons);
-                      },
-                    ),
-                  ],
-                ),
-                Row(children: [
-                  Text('          選択中:'),
-                  Icon(selectedIcons),
-                ]),
-                Row(
-                  children: [
-                    Text('テンプレート:'),
-                    SizedBox(width: 10),
-                    ElevatedButton(
-                      onPressed: () {
-                        _selectCardTemplate((color, icon) {
-                          setState(() {
-                            selectedColor = color;
-                            templateIcons = icon;
-                          });
-                        });
-                      },
-                      child: Text('選択'),
-                    ),
-                  ],
-                ),
-                Column(children: [
-                  Row(children: [
-                    Text('          選択中:'),
-                    Icon(templateIcons),
-                    show_template(selectedColor),
-                  ]),
-                  Container(
-                    height: 50,
-                    width: 75,
-                    decoration: BoxDecoration(
-                      color: selectedColor,
-                      border: Border.all(color: Colors.black, width: 0.1),
+          return AlertDialog(
+            title: Text('ポイントカードを作成'),
+            content: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    onChanged: (value) {
+                      cardName = value;
+                    },
+                    decoration: InputDecoration(
+                      hintText: 'カード名を入力してください',
                     ),
                   ),
-                ]),
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text('スタンプ:'),
-                        SizedBox(width: 10),
-                        ElevatedButton(
-                          onPressed: () {
-                            _customizeStamp((icon, color) {
-                              setState(() {
-                                stampIcon = icon;
-                                stampColor = color;
-                              });
+                  TextField(
+                    onChanged: (value) {
+                      cardNote = value;
+                    },
+                    decoration: InputDecoration(
+                      hintText: '備考情報を入力してください',
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Text('アイコン:     '),
+                      SizedBox(width: 10),
+                      ElevatedButton(
+                        child: Text('選択'),
+                        onPressed: () async {
+                          _addIcon((icon) {
+                            setState(() {
+                              selectedIcons = icon;
                             });
-                          },
-                          child: Text('カスタマイズ'),
-                        ),
-                      ],
-                    ),
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  Row(children: [
+                    Text('          選択中:    '),
+                    Icon(selectedIcons),
+                  ]),
+                  Row(
+                    children: [
+                      Text('テンプレート:'),
+                      SizedBox(width: 10),
+                      ElevatedButton(
+                        onPressed: () {
+                          _selectCardTemplate((color, icon) {
+                            setState(() {
+                              selectedColor = color;
+                              templateIcons = icon;
+                            });
+                          });
+                        },
+                        child: Text('選択'),
+                      ),
+                    ],
+                  ),
+                  Column(children: [
                     Row(children: [
                       Text('          選択中:'),
-                      Icon(stampIcon, color: stampColor),
-                    ])
-                  ],
-                ),
-              ],
+                      Icon(templateIcons),
+                      show_template(selectedColor),
+                    ]),
+                    Container(
+                      height: 50,
+                      width: 75,
+                      decoration: BoxDecoration(
+                        color: selectedColor,
+                        border: Border.all(color: Colors.black, width: 0.1),
+                      ),
+                    ),
+                  ]),
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text('スタンプ: '),
+                          SizedBox(width: 10),
+                          ElevatedButton(
+                            onPressed: () {
+                              _customizeStamp((icon, color) {
+                                setState(() {
+                                  stampIcon = icon;
+                                  stampColor = color;
+                                });
+                              });
+                            },
+                            child: Text('カスタマイズ'),
+                          ),
+                        ],
+                      ),
+                      Row(children: [
+                        Text('          選択中:     '),
+                        Icon(stampIcon, color: stampColor),
+                      ])
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('キャンセル'),
-            ),
-            TextButton(
-              child: Text('作成'),
-              onPressed: () {
-                if (cardName.isNotEmpty) {
-                  setState(() {
-                    _cards.add(PointCard(
-                      cardName: cardName,
-                      note: cardNote,
-                      color: selectedColor,
-                      icons: selectedIcons,
-                      maxPoints: maxPoints,
-                      backgroundImagePath: backgroundImagePath,
-                      stampIcon: stampIcon,
-                      stampColor: stampColor,
-                    ));
-                  });
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
                   Navigator.of(context).pop();
-                }
-              },
-            ),
-          ],
-        );
+                },
+                child: Text('キャンセル'),
+              ),
+              TextButton(
+                child: Text('プレビュー表示'),
+                onPressed: () {
+                  previewNewCard(
+                      cardName,
+                      cardNote,
+                      selectedColor,
+                      selectedIcons,
+                      templateIcons,
+                      maxPoints,
+                      backgroundImagePath,
+                      stampIcon,
+                      stampColor);
+                },
+              ),
+            ],
+          );
+        });
       },
     );
+  }
+
+  void previewNewCard(
+      String cardName,
+      String cardNote,
+      Color selectedColor,
+      IconData selectedIcons,
+      IconData templateIcons,
+      int maxPoints,
+      String? backgroundImagePath,
+      IconData stampIcon,
+      Color stampColor) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('ポイントカードプレビュ'),
+            content: SingleChildScrollView(
+              child: Column(children: [
+                Container(
+                  padding: EdgeInsets.only(bottom: 70, right: 110),
+                  height: 100,
+                  width: 150,
+                  decoration: BoxDecoration(
+                    color: selectedColor,
+                    border: Border.all(color: Colors.black, width: 0.1),
+                  ),
+                  child: Icon(stampIcon, color: stampColor),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('キャンセル'),
+                    ),
+                    TextButton(
+                      child: Text('作成'),
+                      onPressed: () {
+                        if (cardName.isNotEmpty) {
+                          setState(() {
+                            _cards.add(PointCard(
+                              cardName: cardName,
+                              note: cardNote,
+                              color: selectedColor,
+                              icons: selectedIcons,
+                              maxPoints: maxPoints,
+                              backgroundImagePath: backgroundImagePath,
+                              stampIcon: stampIcon,
+                              stampColor: stampColor,
+                            ));
+                          });
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pop();
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ]),
+            ),
+          );
+        });
   }
 
   Text show_template(Color selectedColor) {
@@ -184,7 +242,9 @@ class _CardListPageState extends State<CardListPage> {
     );
   }
 
-  void _addIcon(Function(IconData) onIconSelected, IconData selectIcon) {
+  void _addIcon(Function(IconData) onIconSelected) {
+    IconData selectIcon = Icons.card_giftcard;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -410,7 +470,7 @@ class _CardListPageState extends State<CardListPage> {
       //Appbarの設定
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 94, 199, 73),
-        title: const Text('作成したポイントカード', style: TextStyle(color: Colors.white)),
+        title: const Text('ポイントカード一覧', style: TextStyle(color: Colors.white)),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () => back(context),
@@ -430,6 +490,7 @@ class _CardListPageState extends State<CardListPage> {
         itemCount: _cards.length,
         itemBuilder: (context, index) {
           return ListTile(
+            leading: Icon(_cards[index].icons, color: Colors.black),
             title: Text(_cards[index].cardName),
             onTap: () {
               Navigator.push(
