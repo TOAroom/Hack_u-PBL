@@ -11,7 +11,7 @@ environment:
 
 
 dependencies:
-  flutter_animate: ^4.5.0
+  
   shared_preferences:
   percent_indicator:
   permission_handler: ^10.2.0 #追加部分 
@@ -20,10 +20,12 @@ dependencies:
   flutter:
     sdk: flutter
   image_picker: ^1.0.0 #追加
-  firebase_core: ^1.1.0
-  firebase_auth: ^1.1.1
-  firebase_storage: ^8.0.5
-  path_provider: ^2.0.1
+  firebase_core: 
+  firebase_auth: 
+  firebase_storage: 
+  path_provider: 
+  qr_code_scanner:
+  flutter_animate:
 
 
 
@@ -37,7 +39,6 @@ dependencies:
   flutter_blue_plus: ^1.32.12
   qr_flutter: ^4.1.0
   bordered_text: ^2.0.0
-  qr_code_scanner: ^1.0.1
 
 dev_dependencies:
   flutter_test:
