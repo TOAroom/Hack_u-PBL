@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../store_page_main/store_Page_main.dart';
+import '../application_logo.dart';
 
 class c_Pagemain extends StatelessWidget {
   const c_Pagemain({super.key});
@@ -24,7 +24,7 @@ class c_Pagemain extends StatelessWidget {
             label: Text(''),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Store_Pagemain()));
+                  MaterialPageRoute(builder: (context) => ApplicationLogo()));
             },
           ),
         ],
