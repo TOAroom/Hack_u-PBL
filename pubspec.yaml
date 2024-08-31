@@ -19,6 +19,11 @@ dependencies:
   flutter:
     sdk: flutter
   image_picker: ^1.0.0 #追加
+  firebase_core: ^1.1.0
+  firebase_auth: ^1.1.1
+  firebase_storage: ^8.0.5
+  path_provider: ^2.0.1
+
 
 
 
